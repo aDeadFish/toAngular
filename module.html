@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        {{firstName +" "+lastName}}
+        <div>
+        <!--自定义指令 使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 - 分割, runoob-directive:-->
+        <!--可以通过下列4种方式调用指令-->
+
+        <my-directive></my-directive><!--元素名-->
+        <div my-directive=""></div><!--属性-->
+        <div class="my-directive"></div><!--类名 需设置restrict:"C",-->
+        <!-- directive: my-directive -->
+            <!--注释 需设置restrict:"M",replace:true,-->
+        <!--restrict值
+        E 只限元素名使用
+        A 只限属性使用
+        C 只限类名使用
+        M 只限注释使用
+        默认值为 EA, 即可以通过元素名和属性名来调用指令-->
+        </div>
+    </div>
+<script src="js/angular.min.js"></script>
+<script>
+    var app=angular.module('myApp',[]);
+    app.controller("myCtrl",function($scope){
+        $scope.firstName="John";
+        $scope.lastName="Doe";
+    });
+    app.directive("myDirective",function(){
+        return{
+            restrict:"EACM",
+            replace:true,
+            template:"<h1>hahahahha</h1>"
+        };
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="jsonApp" ng-controller="jsonCtrl">
+        <!--{{message}}-->
+        <ul>
+            <li ng-repeat="x in message">
+                {{x.Name + " " + x.Country}}
+            </li>
+        </ul>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jsonApp.js"></script>
+</body>
+</html>

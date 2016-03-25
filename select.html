@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <div ng-app="mySelect" ng-controller="myCtrl">
+        <select>
+            <option ng-repeat="x in names">{{x}}</option>
+        </select>
+        <select ng-model="selectsites">
+            <option ng-repeat="x in sites" value="{{x.site}}">{{x.site}}</option>
+        </select>
+        <h1>你选择的是: {{selectsites}}</h1>
+
+        <!--ng-options显示选项为x.site值，但是secect的值为x。因此，下面显示到屏幕需selectNames.site-->
+        <select ng-model="selectNames" ng-options="x.site for x in sites"></select>
+
+        <h1>你选择的是: {{selectNames.site}}</h1>
+        <p>网址为: {{selectNames.url}}</p>
+
+
+        <select ng-model="selectedSite" ng-options="x for (x,y) in sited"></select>
+        <!--<select ng-model="selectedSite" ng-options="y.brand for (x,y) in sited"></select>-->
+        <h1>选择的值是:{{selectedSite}}</h1>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app=angular.module('mySelect',[]);
+        app.controller('myCtrl',function($scope){
+            $scope.names=["Google","Baidu","Taobao"];
+            $scope.selectName="browser";
+            $scope.sites=[
+                {site : "Google", url : "http://www.google.com"},
+                {site : "Runoob", url : "http://www.runoob.com"},
+                {site : "Taobao", url : "http://www.taobao.com"}
+            ];
+            $scope.sited={
+                car01 : {brand : "Ford", model : "Mustang", color : "red"},
+                car02 : {brand : "Fiat", model : "500", color : "white"},
+                car03 : {brand : "Volvo", model : "XC90", color : "black"}
+            };
+        });
+    </script>
+</body>
+</html>

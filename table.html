@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #tableOne,th,td{
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding:5px;
+        }
+        /*#tableOne tr:nth-child(odd){*/
+            /*background-color: #f1f1f1;*/
+        /*}*/
+        /*#tableOne tr:nth-child(even){*/
+            /*background-color: #ffffff;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <table id="tableOne">
+            <tr ng-repeat="x in names |orderBy :'Country'">
+                <td>{{$index +1}}</td>
+                <td>{{x.Name}}</td>
+                <td>{{x.Country | uppercase}}</td>
+            </tr>
+        </table>
+        <table>
+            <!--根据奇偶行，增加样式-->
+            <tr ng-repeat="x in names">
+                <td ng-if="$odd" style="background-color: #f1f1f1">{{$index+1}}</td>
+                <td ng-if="$even">{{$index+1}}</td>
+                <td ng-if="$odd" style="background-color: #f1f1f1">{{x.Name}}</td>
+                <td ng-if="$even">{{x.Name}}</td>
+                <td ng-if="$odd" style="background-color: #f1f1f1">{{x.Country}}</td>
+                <td ng-if="$even">{{x.Country}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('myCtrl',function($scope){
+            $scope.names=[
+                {Name:"Bob",Country:"Erp"},
+                {Name:"aaa",Country:"Jap"},
+                {Name:"Li",Country:"China"}
+            ];
+        });
+    </script>
+</body>
+</html>

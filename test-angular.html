@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*表单样式css类 ng-empty ng-not-empty ng-touched ng-untouched ng-valid */
+        /*ng-invalid ng-dirty ng-pending ng-pristine*/
+        form input.ng-invalid{
+            background-color: lightblue;
+        }
+        /*form input.ng-dirty{*/
+            /*background-color: red;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div data-ng-app="myApp" ng-init="parmr='inputt'" >
+        <p>{{5+5}}</p>
+        <input ng-model="parmr" type="text">
+        <h1>Hello, {{parmr}}</h1>
+        <h2>Hello, <span ng-bind="parmr"></span></h2>
+    </div>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        名：<input type="text" ng-model="firstName"><br>
+        姓：<input type="text" ng-model="lastName"><br>
+
+        姓名:{{(firstName|uppercase) +" " +lastName|uppercase}}
+        {{namename|uppercase}}
+        {{fullName()}}
+        总价={{(2*5)|currency}}
+        {{210 +" " +(210|myFormat)}}
+        <div ng-controller="testCtrl">
+            {{testName}}
+            {{firstName}}
+            {{namename}}
+            {{theTime}}
+            <ul>
+                <li ng-repeat="x in names1 |orderBy:'country'|filter:firstName">
+                    {{x.name+", "+x.country}}
+                </li>{{testName}}
+            </ul>
+        </div>
+        <!--自定义指令 使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 - 分割, runoob-directive:-->
+        <!--可以通过下列4种方式调用指令-->
+        <test-directive></test-directive><!--元素名-->
+        <div test-directive=""></div><!--属性-->
+        <div class="test-directive"></div><!--类名 需设置restrict:"C",-->
+        <!--指令：test-directive--><!--注释 需设置restrict:"M",replace:true,-->
+        <!--restrict值
+        E 只限元素名使用
+        A 只限属性使用
+        C 只限类名使用
+        M 只限注释使用
+        默认值为 EA, 即可以通过元素名和属性名来调用指令-->
+        <form  name="myForm" ng-init="myText='test@qq.com'"><!--表单验证，仅在form标签下有用-->
+            <input type="email" name="myAddress" ng-model="myText" required>
+            <h2>状态</h2>
+            <p>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+            <p>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。</p>
+            <p>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+            <p ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</p>
+        </form>
+        <div ng-controller="urltest">
+            {{myUrl}}
+            {{myWelcome}}
+        </div>
+
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/myApp.js"></script>
+</body>
+</html>

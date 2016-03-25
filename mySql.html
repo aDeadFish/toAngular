@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <table>
+            <tr ng-repeat="x in names">
+                <td>{{x.Name}}</td>
+                <td>{{x.Country}}</td>
+            </tr>
+            <tr ng-repeat="x in others">
+                <td>{{x.name}}</td>
+                <td>{{x.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('myCtrl',function($scope,$http){
+            $scope.names=[
+                {Name:"aaa",Country:"Erp"},
+                {Name:"bbbb",Country:"Jap"},
+                {Name:"ccccc",Country:"China"}
+            ];
+            $http.get("get.php").success(function(response){
+                alert(JSON.stringify(response));
+                $scope.others=response;
+            }).error(function(err){
+                console.log(err);
+            });
+
+        });
+//        app.controller('myCtrl',function);
+    </script>
+</body>
+</html>

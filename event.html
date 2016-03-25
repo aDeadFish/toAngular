@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>html事件</title>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <button ng-click="count=count+1">xxx!</button>
+    <p>{{count}}</p>
+    <div ng-init="count1=0">
+        <button ng-click="count1=count1+1">xxx!</button>
+        <p>{{count1}}</p>
+    </div>
+
+    <button ng-click="toggle()">隐藏/显示</button>
+    <p ng-hide="myVar">
+        名: <input type="text" ng-model="firstName"><br>
+        姓名: <input type="text" ng-model="lastName"><br>
+        <br>
+        Full Name: {{firstName + " " + lastName}}
+    </p>
+</div>
+
+<script src="js/angular.min.js"></script>
+<script>
+    var app=angular.module('myApp',[]);
+    app.controller('myCtrl',function($scope){
+        $scope.count=10;
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.myVar = false;
+        $scope.toggle=function(){
+            $scope.myVar=!$scope.myVar;
+        };
+    });
+</script>
+</body>
+</html>
