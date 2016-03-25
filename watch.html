@@ -24,6 +24,7 @@
             $scope.updated++;
         });
 //        watch的第三个参数，它是一个bool类型的参数，表示的是我们比较的是对象的值而不是引用
+//        AngularJS并不直接调用$digest()，而是调用$scope.$apply()，后者会调用$rootScope.$digest()。因此，一轮$digest循环在$rootScope开始，随后会访问到所有的children scope中的watchers。？
         $scope.$watch('user',function(newValue,oldValue){
             if(newValue==oldValue){return;}
             $scope.updated1++;

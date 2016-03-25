@@ -43,6 +43,16 @@ angular.module('myApp',[]).controller('myCtrl',function($scope,$rootScope){
     $timeout(function(){
         $scope.testName="testtesttesttest";
     },2000);
+    setTimeout(function(){
+        $scope.testName="testtesttesttest";
+        $scope.$apply();//apply不加参数的用法，这样不会对数据出错进行报错
+    },2000);
+    setTimeout(function(){
+        //传入一个function到$apply()中的时候，这个function会被包装到一个try…catch块中，所以一旦有异常发生，该异常会被$exceptionHandler service处理
+        $scope.$apply(function(){
+            $scope.testName="testtesttesttest";
+        })
+    },2000);
     $scope.theTime= new Date().toLocaleTimeString();
     $interval(function(){
         $scope.theTime= new Date().toLocaleTimeString();
